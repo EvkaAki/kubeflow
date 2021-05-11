@@ -29,6 +29,7 @@ jobs:
           push: true
           tags: endocker299/kubeflow-centraldashboard:master
           file: components/centraldashboard/Dockerfile
+          context: components/centraldashboard/
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
