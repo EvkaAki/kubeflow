@@ -23,8 +23,8 @@ RUN if [ "$(uname -m)" = "aarch64" ]; then \
         apk add --no-cache python2 make g++@edge; \
     fi
 
-COPY . /components/centraldashboard
-WORKDIR /components/centraldashboard
+COPY . /centraldashboard
+WORKDIR /centraldashboard
 
 RUN npm rebuild && \
     if [ "$(uname -m)" = "aarch64" ]; then \

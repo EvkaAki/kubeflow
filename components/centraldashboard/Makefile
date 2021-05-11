@@ -4,7 +4,7 @@ PROJECT ?= kubeflow-dev
 REGISTRY_PROJECT ?= kubeflow-dev
 KUBEFLOWVERSION ?= 0.7.0
 
-IMG ?= gcr.io/$(REGISTRY_PROJECT)/centraldashboard
+IMG ?= endocker299/kubeflow-centraldashboard
 
 # List any changed  files. We only include files in the notebooks directory.
 # because that is the code in the docker image.
@@ -47,19 +47,19 @@ build:
 	@echo Built $(IMG):latest
 	@echo Built $(IMG):$(TAG)
 
-build-gcb:
-	gcloud --project=$(PROJECT) \
-		builds submit \
-		--machine-type=n1-highcpu-32 \
-		--substitutions=_GIT_VERSION=$(GIT_VERSION),_REGISTRY=$(REGISTRY_PROJECT),_KUBEFLOWVERSION=$(KUBEFLOWVERSION),_COMMIT=$(COMMIT) \
-		--config=cloudbuild.yaml .
+# build-gcb:
+# 	gcloud --project=$(PROJECT) \
+# 		builds submit \
+# 		--machine-type=n1-highcpu-32 \
+# 		--substitutions=_GIT_VERSION=$(GIT_VERSION),_REGISTRY=$(REGISTRY_PROJECT),_KUBEFLOWVERSION=$(KUBEFLOWVERSION),_COMMIT=$(COMMIT) \
+# 		--config=cloudbuild.yaml .
 
 # Build but don't attach the latest tag. This allows manual testing/inspection of the image
 # first.
 push: build
-	gcloud docker -- push $(IMG):$(TAG)
+	docker -- push $(IMG):$(TAG)
 	@echo Pushed $(IMG) with  :$(TAG) tags
 
 push-latest: push
-	gcloud container images add-tag --quiet $(IMG):$(TAG) $(IMG):latest --verbosity=info
+	docker container images add-tag --quiet $(IMG):$(TAG) $(IMG):latest --verbosity=info
 	echo created $(IMG):latest
