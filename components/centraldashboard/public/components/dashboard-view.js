@@ -13,6 +13,7 @@ import './card-styles.js';
 import './iframe-link.js';
 import './notebooks-card.js';
 import './pipelines-card.js';
+import './shares-card.js';
 import './resource-chart.js';
 import {getGCPData} from './resources/cloud-platform-data.js';
 import utilitiesMixin from './utilities-mixin.js';
