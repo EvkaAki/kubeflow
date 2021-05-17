@@ -50,7 +50,7 @@ export class PipelinesCard extends utilitiesMixin(PolymerElement) {
                             class$="[[item.iconClass]]"
                             title="[[item.iconTitle]]">
                         </iron-icon>
-                        <paper-item-body two-line>
+                        <paper-item-body three-line>
                             <div class="header">[[item.name]]</div>
                             <aside secondary>Created [[item.created]]</aside>
                             <div class="by">by <a href="#">#43293</a></div>

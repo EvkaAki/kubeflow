@@ -43,7 +43,7 @@ export class NotebooksCard extends PolymerElement {
                         <paper-ripple></paper-ripple>
                         <iron-icon icon="chrome-reader-mode" slot="item-icon">
                         </iron-icon>
-                        <paper-item-body two-line>
+                        <paper-item-body three-line>
                             <div class="header">[[item.name]]</div>
                             <aside secondary>
                                 Accessed [[item.lastModified]]
