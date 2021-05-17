@@ -20,7 +20,11 @@ import utilitiesMixin from './utilities-mixin.js';
 export class SharesCard extends utilitiesMixin(PolymerElement) {
     static get template() {
         return html`
-
+        <style include="card-styles">
+            :host {
+                @apply --layout-vertical;
+            }
+        </style>
         <paper-card heading="Recent sharing log">
             <header id="message"></header>
             <template is="dom-repeat" items="[[shares]]">

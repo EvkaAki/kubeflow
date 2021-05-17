@@ -57,13 +57,13 @@ describe('Pipelines Card', () => {
         await requestPromise;
         flush();
 
-        const header = pipelinesCard.shadowRoot
-            .getElementById('message');
+        // const header = pipelinesCard.shadowRoot
+        //     .getElementById('message');
         // expect(header.hasAttribute('hidden')).toBe(true);
-        const pipelineLinks = Array.from(pipelinesCard.shadowRoot
-            .querySelectorAll('iframe-link').values());
+        // const pipelineLinks = Array.from(pipelinesCard.shadowRoot
+        //     .querySelectorAll('iframe-link').values());
         // expect(pipelineLinks.length).toBe(5);
-        const hrefPrefix = '/pipeline/?ns=kubeflow-user#/pipelines/details';
+        // const hrefPrefix = '/pipeline/?ns=kubeflow-user#/pipelines/details';
         // expect(pipelineLinks.map((l) => l.href)).toEqual([
         //     `${hrefPrefix}/10`,
         //     `${hrefPrefix}/9`,
@@ -72,9 +72,9 @@ describe('Pipelines Card', () => {
         //     `${hrefPrefix}/6`,
         // ]);
 
-        const pipelineNames = Array.from(pipelinesCard.shadowRoot
-            .querySelectorAll('paper-item-body .header').values());
-        // expect(pipelineNames.map((l) => l.innerText)).toEqual([
+        // const pipelineNames = Array.from(pipelinesCard.shadowRoot
+        //     .querySelectorAll('paper-item-body .header').values());
+        // // expect(pipelineNames.map((l) => l.innerText)).toEqual([
         //     'pipeline-10',
         //     'pipeline-9',
         //     'pipeline-8',
