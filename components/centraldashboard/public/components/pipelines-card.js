@@ -52,8 +52,8 @@ export class PipelinesCard extends utilitiesMixin(PolymerElement) {
                         </iron-icon>
                         <paper-item-body two-line>
                             <div class="header">[[item.name]]</div>
-                            <div class="header">by <a href="#">#43293</a></div>
                             <aside secondary>Created [[item.created]]</aside>
+                            <div class="by">by <a href="#">#43293</a></div>
                         </paper-item-body>
                     </paper-icon-item>
                 </iframe-link>
