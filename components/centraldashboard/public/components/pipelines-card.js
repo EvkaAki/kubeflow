@@ -29,6 +29,7 @@ export class PipelinesCard extends utilitiesMixin(PolymerElement) {
                 @apply --layout-vertical;
             }
             iron-icon.success {
+                
                 color: rgb(52, 168, 83);
             }
             iron-icon.error {
@@ -45,14 +46,21 @@ export class PipelinesCard extends utilitiesMixin(PolymerElement) {
             <template is="dom-repeat" items="[[pipelines]]">
                 <iframe-link class="link" href$="[[item.href]]">
                     <paper-icon-item>
-                        <paper-ripple></paper-ripple>
+                        <paper-ripple>h .</paper-ripple>
                         <iron-icon icon="[[item.icon]]" slot="item-icon"
                             class$="[[item.iconClass]]"
                             title="[[item.iconTitle]]">
                         </iron-icon>
                         <paper-item-body three-line>
                             <div class="header">[[item.name]]</div>
-                            <div class="by">by <a href="#">#43293</a></div>
+                            <div class="byUser">by
+                                <iron-icon icon="social:group-add"
+                                           slot="item-icon"
+                                           class$="class"
+                                           title="User">
+                                </iron-icon>
+                                <a href="#">#43293</a>
+                            </div>
                             <aside secondary>Created [[item.created]]</aside>
                         </paper-item-body>
                     </paper-icon-item>
