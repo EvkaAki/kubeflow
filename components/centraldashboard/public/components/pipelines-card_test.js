@@ -62,7 +62,7 @@ describe('Pipelines Card', () => {
         expect(header.hasAttribute('hidden')).toBe(true);
         const pipelineLinks = Array.from(pipelinesCard.shadowRoot
             .querySelectorAll('iframe-link').values());
-        expect(pipelineLinks.length).toBe(5);
+        expect(pipelineLinks.length).toBe(10);
         const hrefPrefix = '/pipeline/?ns=kubeflow-user#/pipelines/details';
         expect(pipelineLinks.map((l) => l.href)).toEqual([
             `${hrefPrefix}/10`,

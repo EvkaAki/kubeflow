@@ -110,7 +110,7 @@ describe('Notebooks Card', () => {
             expect(header.hasAttribute('hidden')).toBe(true);
             const notebookLinks = Array.from(notebooksCard.shadowRoot
                 .querySelectorAll('iframe-link').values());
-            expect(notebookLinks.length).toBe(5);
+            expect(notebookLinks.length).toBe(10);
             const hrefPrefix = '/notebook/test-namespace';
             expect(notebookLinks.map((l) => l.href)).toEqual([
                 `${hrefPrefix}/server-1/notebooks/server-1-nb-9.ipynb`,
