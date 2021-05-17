@@ -25,12 +25,16 @@ export class SharesCard extends utilitiesMixin(PolymerElement) {
                 @apply --layout-vertical;
             }
         </style>
+        <iron-ajax auto url="[[onResponse]]" handle-as="json"
+                   loading="{{loading}}">
+        </iron-ajax>
+<!--        <paper-progress indeterminate class="slow"-->
+<!--                        hidden$="[[!loading]]"></paper-progress>-->
         <paper-card heading="Recent sharing log">
-            <header id="message"></header>
+            <header id="message" hidden$="[[!message]]">[[message]]</header>
             <template is="dom-repeat" items="[[shares]]">
-                <iframe-link class="link" href$="#">
                     <paper-icon-item>
-                        <paper-ripple>//</paper-ripple>
+                        <paper-ripple></paper-ripple>
                         <iron-icon icon="social:share" slot="item-icon"
                             class$="class"
                             title="Pipeline">
@@ -47,9 +51,27 @@ export class SharesCard extends utilitiesMixin(PolymerElement) {
                             <aside secondary>Created 23.02.2021</aside>
                         </paper-item-body>
                     </paper-icon-item>
-                </iframe-link>
             </template>
-            
+
+            <paper-icon-item>
+                <paper-ripple></paper-ripple>
+                <iron-icon icon="social:share" slot="item-icon"
+                           class$="class"
+                           title="Pipeline">
+                </iron-icon>
+                <paper-item-body three-line>
+                    <div class="header">Pipeline X</div>
+                    <div style="color: green;" class="bla">
+                        <iron-icon icon="social:group-add"
+                                   slot="item-icon"
+                                   class$="class"
+                                   title="Pipeline">
+                        </iron-icon>
+                        enedeliakova@gmail.com</div>
+                    <aside secondary>Created 23.02.2021</aside>
+                </paper-item-body>
+            </paper-icon-item>
+
             <iframe-link class="link" href$="#">
                 <paper-icon-item>
                     <paper-ripple>//</paper-ripple>
@@ -70,7 +92,27 @@ export class SharesCard extends utilitiesMixin(PolymerElement) {
                     </paper-item-body>
                 </paper-icon-item>
             </iframe-link>
+            <paper-icon-item>
+                <paper-ripple></paper-ripple>
+                <iron-icon icon="social:share" slot="item-icon"
+                           class$="class"
+                           title="Pipeline">
+                </iron-icon>
+                <paper-item-body three-line>
+                    <div class="header">Pipeline Clean experiment</div>
+                    <div style="color: green;" class="bla">
+                        <iron-icon icon="social:group-add"
+                                   slot="item-icon"
+                                   class$="class"
+                                   title="Pipeline">
+                        </iron-icon>
+                        enedeliakova@gmail.com</div>
+                    <aside secondary>Created 23.02.2021</aside>
+                </paper-item-body>
+            </paper-icon-item>
+
             
+
         </paper-card>
         `;
     }
@@ -82,7 +124,31 @@ export class SharesCard extends utilitiesMixin(PolymerElement) {
                 type: Array,
                 value: () => ['Pipeline Clean experiment', 'Pipeline X'],
             },
+            hidden: true,
+            loading: {
+                type: Boolean,
+                value: false,
+            },
+            message: {
+                type: String,
+                value: '',
+            },
         };
+    }
+
+    _onResponse() {
+        const pipelines = {
+            created: new Date().toLocaleString(),
+            href: '#',
+            name: 'Pipeline',
+            icon: 'kubeflow:pipeline',
+            iconClass: 'small',
+            iconTitle: 'icon title',
+        }.slice(0, 2);
+
+        this.splice('pipelines', 0, this.pipelines.length, ...pipelines);
+        this.message = this.pipelines.length ? '' : 'None Found';
+        this.loading = false;
     }
 }
 

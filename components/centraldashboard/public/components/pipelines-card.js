@@ -46,7 +46,7 @@ export class PipelinesCard extends utilitiesMixin(PolymerElement) {
             <template is="dom-repeat" items="[[pipelines]]">
                 <iframe-link class="link" href$="[[item.href]]">
                     <paper-icon-item>
-                        <paper-ripple>h .</paper-ripple>
+                        <paper-ripple></paper-ripple>
                         <iron-icon icon="[[item.icon]]" slot="item-icon"
                             class$="[[item.iconClass]]"
                             title="[[item.iconTitle]]">
@@ -59,7 +59,7 @@ export class PipelinesCard extends utilitiesMixin(PolymerElement) {
                                            class$="class"
                                            title="User">
                                 </iron-icon>
-                                <a href="#">#43293</a>
+                                <a href="#">[[item.userId]]</a>
                             </div>
                             <aside secondary>Created [[item.created]]</aside>
                         </paper-item-body>
@@ -127,6 +127,7 @@ export class PipelinesCard extends utilitiesMixin(PolymerElement) {
             const iconTitle = p.status || '';
             let icon = 'kubeflow:pipeline';
             let iconClass = '';
+            const userId = '#29874-3';
             if (this.artifactType === RUNS) {
                 switch (p.status) {
                 case 'Succeeded':
@@ -151,6 +152,7 @@ export class PipelinesCard extends utilitiesMixin(PolymerElement) {
                 name: p.name,
                 icon,
                 iconClass,
+                userId,
                 iconTitle,
             };
         }).slice(0, MAX_PIPELINES);
