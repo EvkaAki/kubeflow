@@ -26,7 +26,7 @@ styleElement.innerHTML = `
                 @apply --layout-center;
             };
         }
-
+        
         paper-card {
             border-radius: 5px;
             width: 100%;
@@ -36,6 +36,11 @@ styleElement.innerHTML = `
             --paper-card-header: {
                 @apply --dashboard-card-header;
             }
+            div.header:after {
+                width: 15px;
+                height: auto;
+                color: #0a3b71;
+            } 
             --paper-card-header-text: {
                 font-size: 16px;
                 font-weight: 500;

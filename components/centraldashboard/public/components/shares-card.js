@@ -25,9 +25,7 @@ export class SharesCard extends utilitiesMixin(PolymerElement) {
                 @apply --layout-vertical;
             }
         </style>
-        <iron-ajax auto url="[[onResponse]]" handle-as="json"
-                   loading="{{loading}}">
-        </iron-ajax>
+
 <!--        <paper-progress indeterminate class="slow"-->
 <!--                        hidden$="[[!loading]]"></paper-progress>-->
         <paper-card heading="Recent sharing log">
@@ -134,21 +132,6 @@ export class SharesCard extends utilitiesMixin(PolymerElement) {
                 value: '',
             },
         };
-    }
-
-    _onResponse() {
-        const pipelines = {
-            created: new Date().toLocaleString(),
-            href: '#',
-            name: 'Pipeline',
-            icon: 'kubeflow:pipeline',
-            iconClass: 'small',
-            iconTitle: 'icon title',
-        }.slice(0, 2);
-
-        this.splice('pipelines', 0, this.pipelines.length, ...pipelines);
-        this.message = this.pipelines.length ? '' : 'None Found';
-        this.loading = false;
     }
 }
 
