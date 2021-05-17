@@ -45,10 +45,10 @@ export class NotebooksCard extends PolymerElement {
                         </iron-icon>
                         <paper-item-body three-line>
                             <div class="header">[[item.name]]</div>
+                            <div class="by">by <a href="#">#43293</a></div>
                             <aside secondary>
                                 Accessed [[item.lastModified]]
                             </aside>
-                            <div class="by">by <a href="#">#43293</a></div>
                         </paper-item-body>
                     </paper-icon-item>
                 </iframe-link>
