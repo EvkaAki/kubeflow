@@ -1,3 +1,4 @@
+import { Params } from '@angular/router';
 import { V1PersistentVolumeClaim, V1Pod } from '@kubernetes/client-node';
 import { Status, BackendResponse } from 'kubeflow';
 import { EventObject } from './event';
@@ -20,6 +21,7 @@ export interface PVCResponseObject {
   name: string;
   namespace: string;
   status: Status;
+  notebooks: string[];
 }
 
 export interface PVCProcessedObject extends PVCResponseObject {
@@ -27,6 +29,11 @@ export interface PVCProcessedObject extends PVCResponseObject {
   editAction?: string;
   ageValue?: string;
   ageTooltip?: string;
+  link: {
+    text: string;
+    url: string;
+    queryParams?: Params | null;
+  };
 }
 
 export interface PVCPostObject {

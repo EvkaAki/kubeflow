@@ -26,6 +26,8 @@ import {
   TABLE_THEME,
   ChipsListValue,
   ComponentValue,
+  LinkValue,
+  LinkType,
 } from '../types';
 import { DateTimeValue } from '../types/date-time';
 import { TemplateValue } from '../types/template';
@@ -74,6 +76,7 @@ export class TableComponent
   chipCtrl = new FormControl();
   showDate = false;
   showStatus = false;
+  LinkType = LinkType;
 
   @HostBinding('class.lib-table') selfClass = true;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -194,6 +197,13 @@ export class TableComponent
           return valueExtractor.getValue(element);
         }
       }
+      if (this.isLinkValue(valueExtractor)) {
+        if (sortingPreprocessorFn !== undefined) {
+          return sortingPreprocessorFn(valueExtractor.getValue(element));
+        } else {
+          return valueExtractor.getValue(element);
+        }
+      }
       if (this.isDateTimeValue(valueExtractor)) {
         if (valueExtractor.getValue(element) === '') {
           return -1;
@@ -273,6 +283,15 @@ export class TableComponent
             .toLocaleLowerCase()
             .includes(filterValue);
       }
+      if (this.isLinkValue(valueExtractor)) {
+        isMatchText =
+          isMatchText ||
+          (valueExtractor as LinkValue)
+            .getValue(row)
+            .toString()
+            .toLocaleLowerCase()
+            .includes(filterValue);
+      }
       if (this.isDateTimeValue(valueExtractor)) {
         isMatchText =
           isMatchText ||
@@ -340,6 +359,20 @@ export class TableComponent
       });
       if (isValid) {
         if (this.isPropertyValue(valueExtractor)) {
+          if (filterValue[element] === '""') {
+            isMatchObj =
+              isMatchObj && valueExtractor.getValue(row).length === 0;
+          } else {
+            isMatchObj =
+              isMatchObj &&
+              valueExtractor
+                .getValue(row)
+                .toString()
+                .toLocaleLowerCase()
+                .includes(filterValue[element]);
+          }
+        }
+        if (this.isLinkValue(valueExtractor)) {
           if (filterValue[element] === '""') {
             isMatchObj =
               isMatchObj && valueExtractor.getValue(row).length === 0;
@@ -551,13 +584,19 @@ export class TableComponent
     return obj instanceof PropertyValue;
   }
 
+  public isLinkValue(obj) {
+    return obj instanceof LinkValue;
+  }
+
   public isDateTimeValue(obj) {
     return obj instanceof DateTimeValue;
   }
 
   public actionTriggered(e: ActionEvent) {
     // Forward the emitted ActionEvent
-    this.actionsEmitter.emit(e);
+    if (e instanceof ActionEvent) {
+      this.actionsEmitter.emit(e);
+    }
   }
 
   public newButtonTriggered() {
@@ -565,8 +604,8 @@ export class TableComponent
     this.actionsEmitter.emit(ev);
   }
 
-  public linkClicked(col: string, data: any) {
-    const ev = new ActionEvent(`${col}:link`, data);
+  public linkClicked(col: string, data: any, event: Event) {
+    const ev = new ActionEvent(`${col}:link`, data, event);
     this.actionsEmitter.emit(ev);
   }
 
