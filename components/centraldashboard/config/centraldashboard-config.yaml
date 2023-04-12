@@ -29,6 +29,12 @@ data:
           "icon": "maps:directions-run"
         },
         {
+          "type": "item",
+          "link": "/run-request/",
+          "text": "Run request",
+          "icon": "maps:directions-run"
+        },
+        {
           "link": "/pipeline/",
           "text": "Pipelines",
           "icon": "kubeflow:pipeline-centered"
