@@ -10,7 +10,7 @@ on:
 
 env:
   DOCKER_USER: kubeflownotebookswg
-  IMG: kubeflownotebookswg/centraldashboard
+  IMG: endocker299/kubeflow-dashboard
   ARCH: linux/ppc64le,linux/amd64
 
 jobs:
