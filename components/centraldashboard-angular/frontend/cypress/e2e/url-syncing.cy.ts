@@ -2,6 +2,16 @@ describe('Browser and Iframe URL syncing', () => {
   beforeEach(() => {
     cy.notebooksRequest();
     cy.mockPodDefaultsRequest();
+    cy.mockDashboardLinksRequest();
+    cy.mockEnvInfoRequest();
+    /*
+     * In order to prevent a mirror effect, CDB hides its sidebar and header
+     * when running in an iframe. Thus, when running tests, we need to imitate
+     * running in a browser and make the WA think that it doesn't run in an iframe.
+     */
+    cy.on('window:before:load', win => {
+      win.parent = win;
+    });
   });
 
   it('checks the URLs when the user navigates to pages inside the same WA', () => {
@@ -9,7 +19,7 @@ describe('Browser and Iframe URL syncing', () => {
     cy.notebookPodRequest();
     cy.visit('/');
 
-    cy.get('[data-cy-sidenav-menu-item="Jupyter"]')
+    cy.get('[data-cy-sidenav-menu-item="Notebooks"]')
       .should('be.visible')
       .click();
     cy.getIframeBody().find('button').contains('New Notebook').click();
@@ -35,7 +45,7 @@ describe('Browser and Iframe URL syncing', () => {
     cy.notebookPodRequest();
     cy.visit('/');
 
-    cy.get('[data-cy-sidenav-menu-item="Jupyter"]')
+    cy.get('[data-cy-sidenav-menu-item="Notebooks"]')
       .should('be.visible')
       .click();
 
@@ -62,7 +72,7 @@ describe('Browser and Iframe URL syncing', () => {
     cy.notebookPodRequest();
     cy.visit('/');
 
-    cy.get('[data-cy-sidenav-menu-item="Jupyter"]')
+    cy.get('[data-cy-sidenav-menu-item="Notebooks"]')
       .should('be.visible')
       .click();
 
