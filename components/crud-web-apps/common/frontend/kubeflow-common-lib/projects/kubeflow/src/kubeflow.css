@@ -1,9 +1,9 @@
 body {
-  --accent-color: #007dfc;
-  --accent-color-light: #69abff;
-  --accent-color-dark: #0052c8;
-  --kubeflow-color: #003c75;
-  --primary-background-color: #2196f3;
+  --accent-color-light: #06c9e1;
+  --accent-color-dark: #033d44;
+  --accent-color: #008d9f;
+  --kubeflow-color: #025865;
+  --primary-background-color: #0593a1;
   --sidebar-color: #f8fafb;
   --border-color: #f4f4f6;
 }

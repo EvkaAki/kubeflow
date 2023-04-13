@@ -4,8 +4,8 @@
 
 :host {
     @apply --layout-vertical;
-    --accent-color: #007dfc;
-    --primary-background-color: #0a3b71;
+    --accent-color: #0593a1;
+    --primary-background-color: #025865;
     --sidebar-default-color: rgba(255, 255, 255, 0.5);
     --divider-color: #dadce0;
     --border-color: #eeeeef;
@@ -202,6 +202,7 @@ app-toolbar>header {
 
 paper-tabs {
     --paper-tabs-selection-bar-color: var(--accent-color);
+
     --paper-tab-ink: var(--accent-color);
     --paper-tabs-selection-bar: {
         border-radius: 50px 50px 0 0;

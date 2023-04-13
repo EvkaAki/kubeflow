@@ -17,13 +17,15 @@ export class ActivityView extends PolymerElement {
                     background: #f1f3f4;
                     padding: 1em;
                     overflow: auto;
-                    --accent-color: #007dfc;
+                    --accent-color: #0593a1;
                     @apply --layout-vertical;
                 }
+
                 paper-progress {
                     width: 100%;
                     --paper-progress-active-color: var(--accent-color)
                 }
+
                 .message {
                     color: var(--google-grey-500);
                     font-style: italic;
@@ -36,6 +38,7 @@ export class ActivityView extends PolymerElement {
                     top: 50%;
                     transform: translateY(-50%);
                 }
+
                 [hidden] {
                     display: none;
                     opacity: 0;
@@ -43,16 +46,16 @@ export class ActivityView extends PolymerElement {
                 }
             </style>
             <iron-ajax id="ajax" url="/api/activities/[[namespace]]"
-                handle-as="json" loading="{{loading}}"
-                on-response="_onResponse" on-error="_onError">
+                       handle-as="json" loading="{{loading}}"
+                       on-response="_onResponse" on-error="_onError">
             </iron-ajax>
             <paper-progress indeterminate class="slow"
-                hidden$="[[!loading]]"></paper-progress>
+                            hidden$="[[!loading]]"></paper-progress>
             <aside class="message" hidden$="[[!message]]">
                 [[message]]
             </aside>
             <activities-list activities="[[activities]]"></activities-list>
-            `;
+        `;
     }
 
     /**
