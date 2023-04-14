@@ -23,7 +23,6 @@ data:
           "icon": "device:storage"
         },
         {
-          "type": "item",
           "link": "/run-request/",
           "text": "Run request",
           "icon": "maps:directions-run"
